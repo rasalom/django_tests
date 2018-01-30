@@ -1,8 +1,11 @@
+djtests/static/.sass-cache/
 .idea/
 manage.py
 settings/local.py
 djtests/static/bower_components/
 
+*.css.map
+*.css
 *.pyc
 *.pyo
 
