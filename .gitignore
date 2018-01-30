@@ -1,0 +1,12 @@
+.idea/
+manage.py
+settings/local.py
+
+*.pyc
+*.pyo
+
+
+
+
+
+
