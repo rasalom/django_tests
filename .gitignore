@@ -1,6 +1,7 @@
 .idea/
 manage.py
 settings/local.py
+djtests/static/bower_components/
 
 *.pyc
 *.pyo
