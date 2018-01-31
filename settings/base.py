@@ -13,6 +13,8 @@ https://docs.djangoproject.com/en/2.0/ref/settings/
 import os
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
+from django.urls.base import reverse_lazy
+
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 
@@ -39,8 +41,10 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'mptt',
     'taggit',
+    'bootstrap4',
 
     'core',
+    'account',
     'pages',
     'rankings',
 ]
@@ -128,3 +132,10 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.0/howto/static-files/
 
 STATIC_URL = '/static/'
+
+
+LOGIN_REDIRECT_URL = reverse_lazy('pages:homepage')
+LOGIN_URL = reverse_lazy('login')
+LOGOUT_URL = reverse_lazy('logout')
+
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'

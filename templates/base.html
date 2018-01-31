@@ -1,8 +1,9 @@
 {% load static %}
 <!doctype html>
-<html lang="en" ng-app="testsApp">
-<head >
-    <base href="/" />
+<!-- ng-app="testsApp" -->
+<html lang="en">
+<head>
+    <base href="/"/>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
@@ -21,11 +22,9 @@
     <script src="{% static 'js/controller.js' %}"></script>
 
 
-
 </head>
 
 <body>
-
 
 
 <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
@@ -60,54 +59,71 @@
             <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
             <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
         </form>
+        {% if request.user.is_authenticated %}
+         <a class="btn ">{{ request.user.username }}</a>
+
+        <a class="btn " href="{% url 'profile'  %}">Profile</a>
+        <a class="btn " href="{% url 'logout'  %}">Logout</a>
+
+        {% else %}
+
+
+        <a class="btn " href="{% url 'login'  %}">Sign up</a>
+        <a class="btn " href="{% url 'register'  %}">Register</a>
+
+        {% endif %}
     </div>
 </nav>
 
 <main role="main">
 
     <!-- Main jumbotron for a primary marketing message or call to action -->
-    <div class="jumbotron">
-        <div class="container">
-            <h1 class="display-3">Hello, world!</h1>
-            <p>This is a template for a simple marketing or informational website. It includes a large callout called a
-                jumbotron and three supporting pieces of content. Use it as a starting point to create something more
-                unique.</p>
-            <p><a class="btn btn-primary btn-lg" href="#" role="button">Learn more &raquo;</a></p>
-        </div>
-    </div>
+    <!--<div class="jumbotron">-->
+    <!--<div class="container">-->
+    <!--<h1 class="display-3">Hello, world!</h1>-->
+    <!--<p>This is a template for a simple marketing or informational website. It includes a large callout called a-->
+    <!--jumbotron and three supporting pieces of content. Use it as a starting point to create something more-->
+    <!--unique.</p>-->
+    <!--<p><a class="btn btn-primary btn-lg" href="#" role="button">Learn more &raquo;</a></p>-->
+    <!--</div>-->
+    <!--</div>-->
 
     <div class="container">
 
-
-        {% verbatim %}
-
-<div ng-view></div>
-{% endverbatim %}
-
-        <!-- Example row of columns -->
         <div class="row">
-            <div class="col-md-4">
-                <h2>Heading</h2>
-                <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor
-                    mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna
-                    mollis euismod. Donec sed odio dui. </p>
-                <p><a class="btn btn-secondary" href="#" role="button">View details &raquo;</a></p>
-            </div>
-            <div class="col-md-4">
-                <h2>Heading</h2>
-                <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor
-                    mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna
-                    mollis euismod. Donec sed odio dui. </p>
-                <p><a class="btn btn-secondary" href="#" role="button">View details &raquo;</a></p>
-            </div>
-            <div class="col-md-4">
-                <h2>Heading</h2>
-                <p>Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Vestibulum id ligula
-                    porta felis euismod semper. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh,
-                    ut fermentum massa justo sit amet risus.</p>
-                <p><a class="btn btn-secondary" href="#" role="button">View details &raquo;</a></p>
+            <div class="col-md-12">
+                {% block content %}
+                {% verbatim %}
+
+                <div ng-view></div>
+                {% endverbatim %}
+                {% endblock %}
             </div>
         </div>
+        <!-- Example row of columns -->
+        <!--<div class="row">-->
+        <!--<div class="col-md-4">-->
+        <!--<h2>Heading</h2>-->
+        <!--<p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor-->
+        <!--mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna-->
+        <!--mollis euismod. Donec sed odio dui. </p>-->
+        <!--<p><a class="btn btn-secondary" href="#" role="button">View details &raquo;</a></p>-->
+        <!--</div>-->
+        <!--<div class="col-md-4">-->
+        <!--<h2>Heading</h2>-->
+        <!--<p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor-->
+        <!--mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna-->
+        <!--mollis euismod. Donec sed odio dui. </p>-->
+        <!--<p><a class="btn btn-secondary" href="#" role="button">View details &raquo;</a></p>-->
+        <!--</div>-->
+        <!--<div class="col-md-4">-->
+        <!--<h2>Heading</h2>-->
+        <!--<p>Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Vestibulum id ligula-->
+        <!--porta felis euismod semper. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh,-->
+        <!--ut fermentum massa justo sit amet risus.</p>-->
+        <!--<p><a class="btn btn-secondary" href="#" role="button">View details &raquo;</a></p>-->
+        <!--</div>-->
+        <!--</div>-->
 
         <hr>
 
@@ -125,6 +141,10 @@
 <script src="{% static 'bower_components/bootstrap/assets/js/vendor/jquery-slim.min.js' %}"></script>
 <script>
     window.jQuery || document.write('<script src="{% static 'bower_components/bootstrap/assets/js/vendor/jquery-slim.min.js' %}"><\/script>')
+
+
+
+
 </script>
 <script src="{% static 'bower_components/bootstrap/assets/js/vendor/popper.min.js' %}"></script>
 <script src="{% static 'bower_components/bootstrap/dist/js/bootstrap.min.js' %}"></script>

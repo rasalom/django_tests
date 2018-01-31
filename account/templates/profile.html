@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+{% if request.user.profile.user.profile.description %}
+{{ request.user.profile.user.profile.description }}
+{% endif %}
+
+
+
+{% endblock %}
